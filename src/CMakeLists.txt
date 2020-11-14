@@ -10,13 +10,29 @@ add_executable(kirpich_writer
 )
 
 
-target_link_libraries(kirpich_writer
+target_link_libraries(
+        ${PROJECT_NAME}
+        Boost::program_options
+        Boost::thread
+        Boost::log
+        Boost::log_setup
+        Boost::filesystem
+
         ${AVCODEC_LIBRARY}
         ${AVFORMAT_LIBRARY}
         ${AVUTIL_LIBRARY}
         ${AVFILTER_LIBRARY}
         ${SWSCALE_LIBRARY}
-        pthread
 )
+
+
+#target_link_libraries(kirpich_writer
+#        ${AVCODEC_LIBRARY}
+#        ${AVFORMAT_LIBRARY}
+#        ${AVUTIL_LIBRARY}
+#        ${AVFILTER_LIBRARY}
+#        ${SWSCALE_LIBRARY}
+#        pthread
+#)
 
 install(TARGETS kirpich_writer DESTINATION ${CMAKE_INSTALL_PREFIX})

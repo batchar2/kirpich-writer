@@ -11,6 +11,18 @@ find_library(SWRESAMPLE_LIBRARY swresample)
 find_library(SWSCALE_LIBRARY swscale)
 
 
+
+find_package(
+        Boost
+        CONFIG REQUIRED
+        program_options
+        thread
+        log
+        log_setup
+        filesystem
+)
+
+
 file(GLOB_RECURSE SRC_FILES
         src/http/*.cpp
         src/archiving/*.cpp
@@ -23,7 +35,8 @@ file(GLOB_RECURSE SRC_FILES
 include_directories(src/)
 include_directories(libs/)
 
-
+#add_subdirectory(libs/process-cpp)
+#include_directories(libs/process-cpp/include/)
 
 
 enable_testing()
