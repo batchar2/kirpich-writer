@@ -29,8 +29,10 @@ namespace k::archiving::ffmpeg {
         inline process_ptr& process() {
             return this->process_;
         }
+        void stop();
+        void pause();
     private:
-        std::string run();
+        int start();
     };
 
     typedef std::shared_ptr<camera> camera_ptr;

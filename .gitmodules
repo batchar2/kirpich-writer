@@ -7,3 +7,6 @@
 [submodule "libs/process"]
 	path = libs/process
 	url = https://gitlab.com/eidheim/tiny-process-library.git
+[submodule "libs/fmt"]
+	path = libs/fmt
+	url = https://github.com/fmtlib/fmt.git

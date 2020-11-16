@@ -35,8 +35,14 @@ file(GLOB_RECURSE SRC_FILES
 include_directories(src/)
 include_directories(libs/)
 
+include_directories(libs/json/include)
+include_directories(libs/fmt/include)
+
 add_subdirectory(libs/process)
-#include_directories(libs/process)
+
+
+add_definitions(-DCPPHTTPLIB_USE_POLL)
+add_definitions(-DFMT_HEADER_ONLY)
 
 
 enable_testing()

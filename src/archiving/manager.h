@@ -28,6 +28,8 @@ namespace k::archiving {
         inline bool stop() {
             if (this->is_running_) {
                 this->is_running_ = false;
+                this->stop_all();
+
                 if (this->th_.joinable()) {
                     this->th_.join();
                 }
@@ -38,6 +40,8 @@ namespace k::archiving {
         bool camera_stop(const std::string &camid);
         bool camera_pause(const std::string &camid);
         bool camera_start(const std::string &camid, const std::string &rtsp_uri);
+    private:
+        void stop_all();
     private:
         manager();
     private:
