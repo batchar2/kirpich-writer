@@ -1,6 +1,10 @@
+ [![](https://github.com/batchar2/kirpich-writer/workflows/test/badge.svg)](https://github.com/batchar2/kirpich-writer/)
+
 ### Медиасервер для систем видеонаблюдения
 
 #### Сборка
+
+
 
 ```
 docker build -t kirpich .

@@ -1,4 +1,4 @@
-name: CI/CD
+name: test
 
 on:
   push:
@@ -9,12 +9,15 @@ on:
       - master
 
 jobs:
-  ci:
+  test:
     runs-on: ubuntu-latest
-    needs: ci
     steps:
       - uses: actions/checkout@v1
+      - name: Checkout submodule
+        shell: bash
+        run: |
+          git submodule update --init --recursive
       - name: Build
         run: docker build -t kirpich .
       - name: Tests
-        run: docker run -ti kirpich /bin/bash -c "make test"
+        run: COMPOSE_INTERACTIVE_NO_CLI=true docker run --tty kirpich /bin/bash -c "make test"
