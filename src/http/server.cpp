@@ -12,7 +12,7 @@
 #define HTTP_STATUS_ERROR           (500)
 
 #define JSON_RPC_METHOD_START       ("start")
-#define JSON_RPC_METHOD_PAUSE       ("start")
+#define JSON_RPC_METHOD_PAUSE       ("pause")
 #define JSON_RPC_METHOD_STOP        ("stop")
 
 using namespace k::http;
@@ -41,6 +41,7 @@ void server::run()
                 auto p = r["params"];
                 if (r["method"] == JSON_RPC_METHOD_START && p.find("id") != p.end() && p.find("rtsp_uri")  != p.end()) {
                     status = k::archiving::manager::instance()->camera_start(p["id"], p["rtsp_uri"]);
+                    if (!status) res.status = HTTP_STATUS_BAD_REQUEST;
                 } else if (r["method"] == JSON_RPC_METHOD_PAUSE && p.find("id") != p.end()) {
                     status = k::archiving::manager::instance()->camera_pause(p["id"]);
                     if (!status) res.status = HTTP_STATUS_404;

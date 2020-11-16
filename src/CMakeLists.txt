@@ -6,7 +6,9 @@ add_executable(kirpich_writer
         http/server.cpp http/server.h
         archiving/manager.cpp archiving/manager.h
         archiving/ffmpeg/camera.cpp archiving/ffmpeg/camera.h
-        log/log.h config/environment.cpp config/environment.h)
+        log/log.h
+        config/environment.cpp config/environment.h
+)
 
 target_link_libraries(
         ${PROJECT_NAME}

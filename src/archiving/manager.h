@@ -13,6 +13,7 @@ namespace k::archiving {
     {
     private:
         std::thread th_;
+        mutable bool close_;
         mutable bool is_running_;
     private:
         std::mutex mtx_;
@@ -27,7 +28,7 @@ namespace k::archiving {
         }
         inline bool stop() {
             if (this->is_running_) {
-                this->is_running_ = false;
+                this->close_ = false;
                 this->stop_all();
 
                 if (this->th_.joinable()) {

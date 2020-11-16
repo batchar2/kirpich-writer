@@ -3,6 +3,7 @@
 #include "log/log.h"
 #include "http/server.h"
 #include "archiving/manager.h"
+#include "config/environment.h"
 
 static bool is_running = true;
 
@@ -25,6 +26,7 @@ int main()
 
     k::logger::init();
 
+    auto config = k::config::environment::instance();
     auto http_server = k::http::server::instance();
     auto archiving_manager = k::archiving::manager::instance();
 
@@ -32,6 +34,7 @@ int main()
         std::this_thread::sleep_for(std::chrono::milliseconds(300));
     }
 
+    (void)config;
     http_server->stop();
     archiving_manager->stop();
 

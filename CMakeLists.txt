@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(kirpich_writer)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 find_library(AVCODEC_LIBRARY avcodec)
 find_library(AVFORMAT_LIBRARY avformat)
@@ -25,6 +25,7 @@ find_package(
 
 file(GLOB_RECURSE SRC_FILES
         src/http/*.cpp
+        src/config/*.cpp
         src/archiving/*.cpp
         src/archiving/ffmpeg*.cpp
         src/task/*.cpp
@@ -35,14 +36,23 @@ file(GLOB_RECURSE SRC_FILES
 include_directories(src/)
 include_directories(libs/)
 
+add_definitions(-DCPPHTTPLIB_USE_POLL)
+add_definitions(-DFMT_HEADER_ONLY)
+
+set(JSON_BuildTests "OFF" CACHE BOOL "Disable json tests" FORCE)
 include_directories(libs/json/include)
+
 include_directories(libs/fmt/include)
 
+
+set(BUILD_TESTING "FALSE")
 add_subdirectory(libs/process)
 
 
-add_definitions(-DCPPHTTPLIB_USE_POLL)
-add_definitions(-DFMT_HEADER_ONLY)
+
+
+
+
 
 
 enable_testing()

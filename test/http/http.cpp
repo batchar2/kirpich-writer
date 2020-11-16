@@ -6,12 +6,11 @@
 #include "http/server.h"
 
 
-
 BOOST_AUTO_TEST_CASE(start_stop)
 {
     auto http_server = k::http::server::instance();
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 
     BOOST_CHECK_EQUAL(http_server->is_running(), true);
 

@@ -9,6 +9,7 @@ namespace k::config {
     private:
         int HTTP_SERVER_PORT_;
         std::string LOG_PATH_;
+        int ARCHIVE_DURATION_SEC_;
     public:
         static environment* instance() {
             static environment inst;
@@ -20,6 +21,9 @@ namespace k::config {
         }
         inline const std::string& LOG_PATH() const {
             return this->LOG_PATH_;
+        }
+        inline const int ARCHIVE_DURATION_SEC() const {
+            return this->ARCHIVE_DURATION_SEC_;
         }
     private:
         inline std::string get_env_value(const std::string &var_name, std::string default_value) {
@@ -35,6 +39,7 @@ namespace k::config {
             std::string value = this->get_env_value(var_name, std::to_string(default_value));
             return std::stoi(value);
         }
+
     private:
         environment();
     };

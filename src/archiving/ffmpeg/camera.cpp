@@ -3,6 +3,7 @@
 #include <csignal>
 
 #include <fmt/format.h>
+#include <config/environment.h>
 
 extern "C" {
 #include <libavutil/opt.h>
@@ -165,7 +166,9 @@ static AVFormatContext* create_output_fmt(const AVFormatContext* ifmt_ctx, const
     av_dict_set(&opts, "segment_list_type","csv",0); // ведем список сегментов
     av_dict_set(&opts, "segment_list_flags","cache",0); // параметры сегмента
 
-    av_dict_set(&opts, "segment_time","10",0);  // длина сегмента
+
+    std::string segment_time = std::to_string(k::config::environment::instance()->ARCHIVE_DURATION_SEC());
+    av_dict_set(&opts, "segment_time",segment_time.c_str(),0);  // длина сегмента
     av_dict_set(&opts, "strftime","1",0); // новые сегменты разрешены и начинаются с даты-время
 
     av_dict_set(&opts, "segment_atclocktime","1",0); // деление выполняется через равные интервалы времени, начиная с 00:00

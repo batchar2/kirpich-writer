@@ -34,7 +34,7 @@ namespace k::http {
             return !this->is_running_;
         }
     private:
-        server(int port);
+        explicit server(int port);
     private:
         void run();
     };

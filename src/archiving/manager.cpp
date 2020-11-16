@@ -5,7 +5,7 @@ using namespace k::archiving;
 
 
 manager::manager()
-    : is_running_(false)
+    : is_running_(false), close_(false)
 {
     std::thread th(&manager::run, this);
     this->th_ = std::move(th);
@@ -15,7 +15,7 @@ manager::manager()
 void manager::run()
 {
     this->is_running_ = true;
-    while (this->is_running_) { // тут будет еще управление процессами
+    while (!this->close_) { // тут будет еще управление процессами
         std::this_thread::sleep_for(std::chrono::milliseconds(300));
     }
     this->is_running_ = false;

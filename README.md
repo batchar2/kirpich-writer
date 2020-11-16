@@ -3,11 +3,11 @@
 #### Сборка
 
 ```
-mkdir build && cmake .. && make -j8
+docker build -t kirpich .
 ```
 
-#### Запуск тестов
+#### Запуск
 
 ```
-mkdir build && cmake .. && make test
+docker run -p 5000:5000 -ti kirpich
 ```
