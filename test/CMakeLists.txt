@@ -16,7 +16,7 @@ set(UNIT_TESTS_INCLUDES ${PROJECT_INCLUDE_DIR}
 
 function(create_test test_name test_file_name)
     add_executable (${test_name} ${test_file_name} ${SRC_FILES})
-    target_link_libraries(${test_name} ${AVCODEC_LIBRARY} ${AVFORMAT_LIBRARY} ${AVUTIL_LIBRARY} ${AVFILTER_LIBRARY} ${SWSCALE_LIBRARY} pthread ${Boost_LIBRARIES} )#-nostartfiles -g)
+    target_link_libraries(${test_name} ${AVCODEC_LIBRARY} ${AVFORMAT_LIBRARY} ${AVUTIL_LIBRARY} ${AVFILTER_LIBRARY} ${SWSCALE_LIBRARY} pthread ${Boost_LIBRARIES} tiny-process-library )#-nostartfiles -g)
     add_test (NAME ${test_name} COMMAND ${test_name})
 endfunction()
 

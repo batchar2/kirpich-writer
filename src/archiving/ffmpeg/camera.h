@@ -8,26 +8,29 @@
 //#include <core/posix/signal.h>
 
 
-//#include <boost/process.hpp>
+#include <process/process.hpp>
 
 namespace k::archiving::ffmpeg {
 
-//    namespace bp = boost::process;
+    namespace process = TinyProcessLib;
+
+    typedef std::shared_ptr<process::Process> process_ptr;
 
     class camera
     {
     private:
-//        std::shared_ptr<posix::ChildProcess> process_;
-//        bp::ipstream pipe_;
+        process_ptr process_;
     private:
         std::string camid_;
         std::string rtsp_uri_;
     public:
         camera(const std::string &camid, const std::string &rtsp_uri);
     public:
-//        inline bp::ipstream& pipe() {
-//            return this->pipe_;
-//        }
+        inline process_ptr& process() {
+            return this->process_;
+        }
+    private:
+        std::string run();
     };
 
     typedef std::shared_ptr<camera> camera_ptr;

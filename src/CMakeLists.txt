@@ -23,6 +23,8 @@ target_link_libraries(
         ${AVUTIL_LIBRARY}
         ${AVFILTER_LIBRARY}
         ${SWSCALE_LIBRARY}
+
+        tiny-process-library
 )
 
 

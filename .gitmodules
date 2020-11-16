@@ -4,3 +4,6 @@
 [submodule "libs/json"]
 	path = libs/json
 	url = https://github.com/nlohmann/json
+[submodule "libs/process"]
+	path = libs/process
+	url = https://gitlab.com/eidheim/tiny-process-library.git

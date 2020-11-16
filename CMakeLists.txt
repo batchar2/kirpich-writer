@@ -35,8 +35,8 @@ file(GLOB_RECURSE SRC_FILES
 include_directories(src/)
 include_directories(libs/)
 
-#add_subdirectory(libs/process-cpp)
-#include_directories(libs/process-cpp/include/)
+add_subdirectory(libs/process)
+#include_directories(libs/process)
 
 
 enable_testing()
