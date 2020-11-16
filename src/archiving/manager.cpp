@@ -42,7 +42,7 @@ bool manager::camera_pause(const std::string &camid)
         this->cameras_.erase(camid);
         return true;
     }
-    return true;
+    return false;
 }
 
 

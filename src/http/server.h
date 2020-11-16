@@ -4,6 +4,7 @@
 #include <memory>
 
 #include <httplib/httplib.h>
+#include <config/environment.h>
 
 
 namespace k::http {
@@ -17,7 +18,7 @@ namespace k::http {
         std::shared_ptr<httplib::Server> server_;
     public:
         static server* instance() {
-            static server inst(5000);
+            static server inst(k::config::environment::instance()->HTTP_SERVER_PORT());
             return &inst;
         }
         inline bool is_running() const {

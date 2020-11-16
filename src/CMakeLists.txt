@@ -5,10 +5,8 @@ add_executable(kirpich_writer
         main.cpp
         http/server.cpp http/server.h
         archiving/manager.cpp archiving/manager.h
-        task/base_task.h
         archiving/ffmpeg/camera.cpp archiving/ffmpeg/camera.h
-)
-
+        log/log.h config/environment.cpp config/environment.h)
 
 target_link_libraries(
         ${PROJECT_NAME}
@@ -26,15 +24,5 @@ target_link_libraries(
 
         tiny-process-library
 )
-
-
-#target_link_libraries(kirpich_writer
-#        ${AVCODEC_LIBRARY}
-#        ${AVFORMAT_LIBRARY}
-#        ${AVUTIL_LIBRARY}
-#        ${AVFILTER_LIBRARY}
-#        ${SWSCALE_LIBRARY}
-#        pthread
-#)
 
 install(TARGETS kirpich_writer DESTINATION ${CMAKE_INSTALL_PREFIX})

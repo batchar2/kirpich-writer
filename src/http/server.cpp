@@ -2,10 +2,8 @@
 
 #include <nlohmann/json.hpp>
 
-
+#include "log/log.h"
 #include "archiving/manager.h"
-
-using namespace k::http;
 
 
 #define HTTP_STATUS_OK              (200)
@@ -17,6 +15,7 @@ using namespace k::http;
 #define JSON_RPC_METHOD_PAUSE       ("start")
 #define JSON_RPC_METHOD_STOP        ("stop")
 
+using namespace k::http;
 
 server::server(int port)
     : port_(port), is_running_(false)
@@ -53,6 +52,7 @@ void server::run()
                 }
                 nlohmann::json json_response = {{"status", status},};
                 res.set_content(json_response.dump(), "application/json");
+                if (status) res.status = HTTP_STATUS_OK;
             }
         } catch (...) {
             res.status = HTTP_STATUS_ERROR;
@@ -63,7 +63,7 @@ void server::run()
 
     this->server_->set_logger([](const auto& req, const auto& res) {
         if (!req.method.empty()) {
-            std::cerr << "<<<" << req.method << " " << req.path << std::endl;
+            LOG_INFO << ">>> " << req.method << " " << req.path << "  " << res.status << std::endl;
         }
     });
 
