@@ -20,15 +20,14 @@ RUN apt-get install -y libavcodec-dev libavformat-dev libavdevice-dev libavfilte
 COPY . /code/
 
 # build && install
-RUN  mkdir -p /code/build/ && \
-    cd /code/build/ && \
-    cmake .. && \
+RUN mkdir -p /code/build/
+WORKDIR /code/build/
+RUN cmake .. && \
     make -j$(nproc) && \
     make test && \
-    make install && \
-    cd /
+    make install
 
-RUN rm -r /code
+#RUN rm -r /code
 
 CMD /usr/local/kirpich_writer
 
